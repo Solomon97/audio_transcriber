@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "audio-transcriber"
+version = "0.1.0"
+description = "Simple Chinese/English audio transcription with optional LLM post-processing."
+readme = "README.md"
+authors = [
+    { name="Solomon Chen", email="solomonc@alum.mit.edu" }
+]
+license = { text = "AGPL-3.0" }
+requires-python = ">=3.11"
+
+dependencies = [
+    "faster-whisper",    # Core transcription engine
+    "python-docx",       # Export transcripts to Word documents
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",            # Unit testing
+    "pytest-cov",        # Test coverage
+    "black",             # Code formatting
+    "flake8",            # Linting / style checking
+    "mypy",              # Type checking
+    "isort",             # Import sorting
+    "ipython",           # Interactive Python shell
+    "jupyter"            # Notebooks for prototyping / exploration
+]
+
+ollama = [
+    "ollama",            # LLM post-processing and summarization
+]
+
+all = [
+    "ollama"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+audio_transcriber = ["py.typed"]
