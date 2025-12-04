@@ -16,6 +16,7 @@ requires-python = ">=3.11"
 dependencies = [
     "faster-whisper",    # Core transcription engine
     "python-docx",       # Export transcripts to Word documents
+    "opencc-python-reimplemented",   # Simplified/Traditional Chinese converter
 ]
 
 [project.optional-dependencies]

@@ -5,7 +5,7 @@
 **Note: Any improvements or modifications to this package should be shared with the original author at solomonc@alum.mit.edu**
 
 ## Current Structure
-
+```
 audio_transcriber/
 ├── src/
 │   └── audio_transcriber/
@@ -20,7 +20,7 @@ audio_transcriber/
 ├── docs/                        # Documentation
 ├── README.md                    # This file
 └── pyproject.toml               # Package configuration and dependencies
-
+```
 
 ## Import Usage Note(subject to changes)
 

@@ -68,3 +68,8 @@ data/processed/
 *.env
 config.json
 secrets.json
+
+# Ignore audio files
+testing_bits/*.mp3
+testing_bits/*.wav
+testing_bits/*.m4a

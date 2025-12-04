@@ -11,6 +11,7 @@ from pathlib import Path
 from typing import Literal
 
 from faster_whisper import WhisperModel
+from opencc import OpenCC
 
 from .config import DEFAULT_MODEL_SIZE, SUPPORTED_AUDIO_FORMATS
 from .utils import validate_audio_file, format_timestamp
@@ -153,12 +154,14 @@ class Transcriber:
         Initialize the Transcriber with a specified Whisper model.
 
         Args:
-            model_size: Whisper model size. Options are 'tiny', 'base', 'small', 'medium', 'large-v2', or 'large-v3'.
-            Larger models are more accurate but slower. Default is defined in config.py.
-            device: Compute device to use.
-                Options are 'cpu', 'cuda', or 'auto'. 'auto' will use CUDA if available, otherwise CPU.
-            compute_type: Computation type for inference. Options include 'default', 'float16', 'int8_float16', 'int8'.
-            Use 'int8' for lower memory usage on CPU.
+            model_size:
+                Whisper model size. Options are 'tiny', 'base', 'small', 'medium', 'large-v2', or 'large-v3'.
+                Larger models are more accurate but slower. Default is defined in config.py.
+            device:
+                Compute device to use. Options are 'cpu', 'cuda', or 'auto'. 'auto' will use CUDA if available, otherwise CPU.
+            compute_type:
+                Computation type for inference. Options include 'default', 'float16', 'int8_float16', 'int8'.
+                Use 'int8' for lower memory usage on CPU.
 
         Raises:
             ValueError: If an invalid model_size is provided.
@@ -234,10 +237,12 @@ class Transcriber:
             word_timestamps=word_timestamps,
             vad_filter=vad_filter,
         )
+        # Convert all text to traditional Chinese since fasterwhisper tends to output simplified chinese
+        converter = OpenCC("s2t")
 
         # Convert generator to list and build result
         segments = [
-            Segment(start=seg.start, end=seg.end, text=seg.text)
+            Segment(start=seg.start, end=seg.end, text=converter.convert(seg.text))
             for seg in segments_iter
         ]
 
