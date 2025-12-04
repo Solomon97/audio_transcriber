@@ -76,3 +76,6 @@ secrets.json
 
 # Ignore audio transcripts
 *.docx
+
+# why is windows annoying
+*:Zone.Identifier
