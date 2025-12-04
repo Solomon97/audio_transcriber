@@ -73,3 +73,6 @@ secrets.json
 *.mp3
 *.wav
 *.m4a
+
+# Ignore audio transcripts
+*.docx
