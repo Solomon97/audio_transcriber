@@ -24,14 +24,15 @@ audio_transcriber/
 
 ## Import Usage Note(subject to changes)
 
-"""Basic transcription"""
+```python
+# Basic transcription
 from audio_transcriber import Transcriber
 
 transcriber = Transcriber(model_size="large-v3")
 result = transcriber.transcribe("meeting.wav")
 print(result.text)
 
-"""With optional post-processing (requires Ollama)"""
+# With optional post-processing (requires Ollama)
 from audio_transcriber import Transcriber, PostProcessor
 
 transcriber = Transcriber()
@@ -41,13 +42,13 @@ processor = PostProcessor(model="qwen2.5:7b")  # User chooses Ollama model
 cleaned = processor.clean(result.text)
 summary = processor.summarize(result.text)
 
-"""Export to Word document"""
+# Export to Word document
 from audio_transcriber import Transcriber
 
 transcriber = Transcriber()
 result = transcriber.transcribe("meeting.wav")
 result.to_docx("meeting_transcript.docx")
-
+```
 
 ## Design Philosophy
 
