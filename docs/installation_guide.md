@@ -151,7 +151,7 @@ docker pull nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04
 ### Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/Solomon97/audio_transcriber>
 cd audio_transcriber
 ```
 
