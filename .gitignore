@@ -70,6 +70,6 @@ config.json
 secrets.json
 
 # Ignore audio files
-.mp3
-.wav
-.m4a
+*.mp3
+*.wav
+*.m4a
